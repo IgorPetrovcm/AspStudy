@@ -27,3 +27,29 @@ public class Home
 добавим строку:
 builder.Services.AddControllers()
 этой строкой мы добаляем объекту builder возможности поддержки контроллеров
+
+далее сопостовляем маршруты с контроллерами:
+
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+
+метод MapcontrollerRoute добавляет один маршрут с именем 'default' и шаблоном '{controller=Home}/{action=Index}/{id?}'. Данный шаблон устанавливает трехсегментную структуру строки запроса: controller/action/id
+
+
+если у нас есть класс в папке Controllers, но мы не хротим, чтобы он обрабатывал запросы как контроллер, то можеь воспользоваться атрибутом [NonController]:
+
+[NonController]
+public class NewController : Controller
+
+аналогично если мы хотим чтобы метод контроллера не рассматривалчя как его действие, то используем атрибут NonAction:
+
+[NonAction]
+public string NewIndex() {}
+
+Атрибут [ActionName] позволяет задать другое имя для метода:
+
+[ActionName("Index2")]
+public string Index() {}
+
+
+Кроме того, методы могут обслуживать различные типы HTTP запросов.
+[HttpGet], [HttpPost], [HttpPut], [HttpPatch], [HttpDelete], [HttpHead]

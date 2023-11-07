@@ -10,5 +10,19 @@ namespace MvcApp.Controllers
         {
             return "Hello World!";
         }
+        //[ActionName("Index2")]
+        public string Index2() 
+        {
+            return "Check";
+        }
+    }
+    [NonController]
+    public class NewController : Controller 
+    {
+        [NonAction]
+        public string Index() 
+        { 
+            return "";
+        }
     }
 }
