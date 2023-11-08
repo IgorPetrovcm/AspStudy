@@ -19,7 +19,13 @@ namespace MvcApp.Controllers
             await Response.WriteAsync(htmlText);
         }
         [HttpPost]
-        public string Index(string name, int age) => $"name user: {name}\nage user: {age}";
+        //public string Index(string name, int age) => $"name user: {name}\nage user: {age}";
+        public string PersonData() 
+        {
+            string name = Request.Form["name"];
+            string age = Request.Form["age"];
+            return $"{name}: {age}";
+        }
 
         [ActionName("Index2")]
         [HttpGet]
