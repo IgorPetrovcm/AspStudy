@@ -7,7 +7,8 @@ namespace MvcApp.Controllers
 {
     public class Home : Controller
     {
-        Employees employees = new Employees();
+        public Employees employees;
+        public Home(Employees employees) => this.employees = employees;
         public IActionResult Index() 
         {
             string html = @"<form method='post'>
@@ -34,7 +35,7 @@ namespace MvcApp.Controllers
         {
             string html = @"<form method='post'>
             <label>Name programmer</label> <br/>
-            <input name='name'> <br/>
+            <input name='name' minlength='3' maxlength='18'> <br/>
             <label>1.Back</label> <br/>
             <input name='send' type='submit' value='Send' /> <br/>
             </form>";
@@ -53,7 +54,7 @@ namespace MvcApp.Controllers
         {
             string html = @"<form method='post'>
             <label>Name programmer</label> <br/>
-            <input name='name'> <br/>
+            <input name='name' minlength='3' maxlength='18'><br/>
             <label>1.Back</label> <br/>
             <input name='send' type='submit' value='Send' /> <br/>
             </form>";
