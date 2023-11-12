@@ -6,8 +6,8 @@ namespace Structs
 
     public class Employees 
     {
-        List<Programmer> programmers = new List<Programmer>();
-        List<Accountant> accountants = new List<Accountant>();
+        public List<Programmer> programmers = new List<Programmer>();
+        public List<Accountant> accountants = new List<Accountant>();
         
     }
 }

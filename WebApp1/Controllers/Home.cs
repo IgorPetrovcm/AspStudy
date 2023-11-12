@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MvcApp;
 using Structs;
+using System.Text;
 namespace MvcApp.Controllers 
 {
     public class Home : Controller
@@ -24,6 +25,8 @@ namespace MvcApp.Controllers
         {
             if (input == 1) return Redirect("/Home/EditProgrammers");
             if (input == 2) return Redirect("/Home/EditAccountants");
+            if (input == 3) return Redirect("/Home/ListProgrammers");
+            if (input == 4) return Redirect("/Home/ListAccountants");
             return Redirect("/Home/Index");
         }
 
@@ -63,10 +66,22 @@ namespace MvcApp.Controllers
 
         public IActionResult ListProgrammers() 
         {
-            foreach (var employe in employees.programmers) 
+            StringBuilder strBuild = new StringBuilder();
+            foreach (var programmer in employees.programmers) 
             {
-                
+                strBuild.Append($"<p>{programmer.name}</p>");
             }
+            return new HtmlResponse(strBuild.ToString());
+        }
+
+        public IActionResult ListAccountants() 
+        {
+            StringBuilder strBuild = new StringBuilder();
+            foreach (var accountant in employees.accountants) 
+            {
+                strBuild.Append($"<p>{accountant.name}</p>");
+            }
+            return new HtmlResponse(strBuild.ToString());
         }
     }
 }
