@@ -44,6 +44,8 @@ namespace MvcApp.Controllers
         public IActionResult EditProgrammers(string name) 
         {
             if (name == "1") return Redirect("/Home/Index");
+            if (name == null) return Redirect("/Home/EditProgrammers");            
+            employees.programmers.Add(new Programmer(name));
             return Redirect("/Home/EditProgrammers");
         }
         
@@ -61,6 +63,8 @@ namespace MvcApp.Controllers
         public IActionResult EditAccountants(string name) 
         {
             if (name == "1") return Redirect("/Home/Index");
+            if (name == null) return Redirect("/Home/EditAccountants");
+            employees.accountants.Add(new Accountant(name));
             return Redirect("/Home/EditAccountants");
         }
 
