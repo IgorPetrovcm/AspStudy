@@ -1,11 +1,12 @@
 
 using Microsoft.AspNetCore.Mvc;
 using MvcApp;
+using Structs;
 namespace MvcApp.Controllers 
 {
     public class Home : Controller
     {
-        
+        Employees employees = new Employees();
         public IActionResult Index() 
         {
             string html = @"<form method='post'>
@@ -21,11 +22,9 @@ namespace MvcApp.Controllers
         [HttpPost] 
         public IActionResult Index(int input) 
         {
-            if (input == 1) 
-            {
-                return Redirect("/Home/EditProgrammers");
-            }
-            return null;
+            if (input == 1) return Redirect("/Home/EditProgrammers");
+            if (input == 2) return Redirect("/Home/EditAccountants");
+            return Redirect("/Home/Index");
         }
 
         public IActionResult EditProgrammers() 
@@ -33,9 +32,41 @@ namespace MvcApp.Controllers
             string html = @"<form method='post'>
             <label>Name programmer</label> <br/>
             <input name='name'> <br/>
-            <input name='send' type='submit' value='Send' />
+            <label>1.Back</label> <br/>
+            <input name='send' type='submit' value='Send' /> <br/>
             </form>";
             return new HtmlResponse(html);
+        }
+        [HttpPost]
+        public IActionResult EditProgrammers(string name) 
+        {
+            if (name == "1") return Redirect("/Home/Index");
+            return Redirect("/Home/EditProgrammers");
+        }
+        
+        public IActionResult EditAccountants() 
+        {
+            string html = @"<form method='post'>
+            <label>Name programmer</label> <br/>
+            <input name='name'> <br/>
+            <label>1.Back</label> <br/>
+            <input name='send' type='submit' value='Send' /> <br/>
+            </form>";
+            return new HtmlResponse(html);            
+        }
+        [HttpPost] 
+        public IActionResult EditAccountants(string name) 
+        {
+            if (name == "1") return Redirect("/Home/Index");
+            return Redirect("/Home/EditAccountants");
+        }
+
+        public IActionResult ListProgrammers() 
+        {
+            foreach (var employe in employees.programmers) 
+            {
+                
+            }
         }
     }
 }
